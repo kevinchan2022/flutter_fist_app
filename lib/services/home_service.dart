@@ -24,7 +24,6 @@ class HomeService {
       path: "/article/list/$pageNum/json",
       queryParameters: {"page_size": pageSize},
     );
-    print('test');
     HomeListData listData = HomeListData.fromJson(res.data);
     return listData.datas;
   }
@@ -56,9 +55,12 @@ class HomeService {
   }
 
   // 查询收藏列表
-  Future getCollects(int pageNum) async {
-    final res = await _httpInstance.get(path: "/lg/collect/list/$pageNum/json");
-    var data = CollectsListData.fromJson(res.data);
+  Future<List<CollectsItemData>?> getCollects(int pageNum, int pageSize) async {
+    final res = await _httpInstance.get(
+      path: "/lg/collect/list/$pageNum/json",
+      queryParameters: {"page_size": pageSize},
+    );
+    CollectsListData data = CollectsListData.fromJson(res.data);
     if (data.datas != null && data.datas?.isNotEmpty == true) {
       return data.datas;
     } else {

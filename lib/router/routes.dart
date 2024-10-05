@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/common-ui/web/webview_widget.dart';
 import 'package:flutter_project/pages/auth/register_page.dart';
+import 'package:flutter_project/pages/collects/collects_page.dart';
 import 'package:flutter_project/pages/knowledge/detail/knowledge_detail_page.dart';
 import 'package:flutter_project/pages/layout/layout_page.dart';
 import 'package:flutter_project/pages/auth/login_page.dart';
@@ -21,6 +22,8 @@ class RoutePath {
   static const String knowledgeDetailPage = '/knowledge_detail';
   // 热点搜索页
   static const String hotKeySearchPage = '/hot_key_search';
+  // 收藏页面
+  static const String collectsPage = 'collects_page';
 }
 
 // ignore: avoid_classes_with_only_static_members
@@ -44,6 +47,8 @@ class Routes {
             settings: settings);
       case RoutePath.hotKeySearchPage:
         return pageRoute(const SearchPage(), settings: settings);
+      case RoutePath.collectsPage:
+        return pageRoute(const CollectsPage(), settings: settings);
     }
     // 页面匹配失败
     return pageRoute(

@@ -9,7 +9,6 @@ class CookieInterceptor extends Interceptor {
       RequestOptions options, RequestInterceptorHandler handler) async {
     // 获取本地存储的cookie
     final cookieList = await StorageUtil.getStringList(StorageConfig.SP_COOKIE);
-    print('cookie:$cookieList');
     // 把cookie放到请求头中
     options.headers[HttpHeaders.cookieHeader] = cookieList;
     handler.next(options);

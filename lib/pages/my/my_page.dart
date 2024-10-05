@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/pages/auth/login_page.dart';
+import 'package:flutter_project/pages/collects/collects_page.dart';
 import 'package:flutter_project/pages/my/my_view_model.dart';
 import 'package:flutter_project/router/route_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,7 +46,9 @@ class _MyPageState extends State<MyPage> {
             child: Column(
               children: [
                 _header(headerClik),
-                _settingsItem('我的收藏', () => {}),
+                _settingsItem('我的收藏', () {
+                  RouteUtils.push(context, const CollectsPage());
+                }),
                 _settingsItem('检查更新', () => {}),
                 _settingsItem('关于我们', () => {}),
                 Consumer<MyViewModel>(
