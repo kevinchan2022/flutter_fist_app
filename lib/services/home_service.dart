@@ -25,6 +25,7 @@ class HomeService {
       queryParameters: {"page_size": pageSize},
     );
     HomeListData listData = HomeListData.fromJson(res.data);
+    print('test');
     return listData.datas;
   }
 
