@@ -27,16 +27,16 @@ class CollectsListData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["curPage"] = curPage;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["curPage"] = curPage;
     if (datas != null) {
-      _data["datas"] = datas;
+      data["datas"] = datas;
     }
-    _data["offset"] = offset;
-    _data["over"] = over;
-    _data["pageCount"] = pageCount;
-    _data["size"] = size;
-    _data["total"] = total;
-    return _data;
+    data["offset"] = offset;
+    data["over"] = over;
+    data["pageCount"] = pageCount;
+    data["size"] = size;
+    data["total"] = total;
+    return data;
   }
 }
