@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/common-ui/dialog/check_update_dialog.dart';
 import 'package:flutter_project/pages/about_us/about_us_page.dart';
 import 'package:flutter_project/pages/auth/login_page.dart';
 import 'package:flutter_project/pages/collects/collects_page.dart';
 import 'package:flutter_project/pages/my/my_view_model.dart';
 import 'package:flutter_project/router/route_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
 class MyPage extends StatefulWidget {
@@ -47,19 +49,30 @@ class _MyPageState extends State<MyPage> {
             child: Column(
               children: [
                 _header(headerClik),
-                _settingsItem('我的收藏', () {
-                  RouteUtils.push(context, const CollectsPage());
+                _settingsItem(
+                    title: '我的收藏',
+                    onTap: () {
+                      RouteUtils.push(context, const CollectsPage());
+                    }),
+                Consumer<MyViewModel>(builder: (context, vm, child) {
+                  return _settingsItem(
+                      title: '检查更新',
+                      showDot: vm.showDot,
+                      onTap: () {
+                        checkAppUpdate();
+                      });
                 }),
-                _settingsItem('检查更新', () => {}),
-                _settingsItem('关于我们', () {
-                  RouteUtils.push(context, const AboutUsPage());
-                }),
+                _settingsItem(
+                    title: '关于我们',
+                    onTap: () {
+                      RouteUtils.push(context, const AboutUsPage());
+                    }),
                 Consumer<MyViewModel>(
                   builder: (context, vm, child) {
                     if (vm.needLogin) {
                       return const SizedBox();
                     }
-                    return _settingsItem('退出登录', doLogout);
+                    return _settingsItem(title: '退出登录', onTap: doLogout);
                   },
                 ),
               ],
@@ -68,6 +81,27 @@ class _MyPageState extends State<MyPage> {
         ),
       ),
     );
+  }
+
+  // 检查更新
+  void checkAppUpdate() async {
+    String? url = await viewModel.checkUpdate();
+    if (url != null && url.isNotEmpty == true) {
+      // showNeedUpdateDialog(
+      //   context: context,
+      //   dismissClick: () {
+      //     // 是否显示红点
+      //     viewModel.shouldShowUpdateDot();
+      //   },
+      //   confirmClick: () {
+      //     // 跳转到外部浏览器打开
+      //     viewModel.jumpToOutLink(url);
+      //   },
+      // );
+      viewModel.shouldShowUpdateDot();
+    } else {
+      showToast('已经是最新版本');
+    }
   }
 
   Widget _header(GestureTapCallback? onTap) {
@@ -108,7 +142,8 @@ class _MyPageState extends State<MyPage> {
     );
   }
 
-  Widget _settingsItem(String? title, GestureTapCallback? onTap) {
+  Widget _settingsItem(
+      {String? title, bool? showDot, GestureTapCallback? onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -122,12 +157,14 @@ class _MyPageState extends State<MyPage> {
         ),
         child: Row(
           // 左右布局
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            showDot == true ? _redDot() : const SizedBox(),
             Text(
               title ?? "",
               style: TextStyle(color: Colors.black, fontSize: 14.sp),
             ),
+            const Expanded(child: SizedBox()),
             Image.asset(
               "assets/images/arrow-right.png",
               width: 14.r,
@@ -135,6 +172,18 @@ class _MyPageState extends State<MyPage> {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _redDot() {
+    return Container(
+      margin: EdgeInsets.only(right: 2.w),
+      width: 5.w,
+      height: 5.h,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(2.5)),
+        color: Colors.red,
       ),
     );
   }

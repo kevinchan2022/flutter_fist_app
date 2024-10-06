@@ -79,4 +79,8 @@ class HttpUtil {
       onSendProgress: onSendProgress,
     );
   }
+
+  void changeBaseUrl(String baseUrl) {
+    _dio.options.baseUrl = baseUrl;
+  }
 }
