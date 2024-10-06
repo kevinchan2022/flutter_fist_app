@@ -31,17 +31,17 @@ class CollectsListData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["curPage"] = curPage;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["curPage"] = curPage;
     if (datas != null) {
-      _data["datas"] = datas?.map((e) => e.toJson()).toList();
+      data["datas"] = datas?.map((e) => e.toJson()).toList();
     }
-    _data["offset"] = offset;
-    _data["over"] = over;
-    _data["pageCount"] = pageCount;
-    _data["size"] = size;
-    _data["total"] = total;
-    return _data;
+    data["offset"] = offset;
+    data["over"] = over;
+    data["pageCount"] = pageCount;
+    data["size"] = size;
+    data["total"] = total;
+    return data;
   }
 }
 
@@ -101,23 +101,23 @@ class CollectsItemData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["author"] = author;
-    _data["chapterId"] = chapterId;
-    _data["chapterName"] = chapterName;
-    _data["courseId"] = courseId;
-    _data["desc"] = desc;
-    _data["envelopePic"] = envelopePic;
-    _data["id"] = id;
-    _data["link"] = link;
-    _data["niceDate"] = niceDate;
-    _data["origin"] = origin;
-    _data["originId"] = originId;
-    _data["publishTime"] = publishTime;
-    _data["title"] = title;
-    _data["userId"] = userId;
-    _data["visible"] = visible;
-    _data["zan"] = zan;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["author"] = author;
+    data["chapterId"] = chapterId;
+    data["chapterName"] = chapterName;
+    data["courseId"] = courseId;
+    data["desc"] = desc;
+    data["envelopePic"] = envelopePic;
+    data["id"] = id;
+    data["link"] = link;
+    data["niceDate"] = niceDate;
+    data["origin"] = origin;
+    data["originId"] = originId;
+    data["publishTime"] = publishTime;
+    data["title"] = title;
+    data["userId"] = userId;
+    data["visible"] = visible;
+    data["zan"] = zan;
+    return data;
   }
 }
