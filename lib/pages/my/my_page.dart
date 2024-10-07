@@ -87,18 +87,17 @@ class _MyPageState extends State<MyPage> {
   void checkAppUpdate() async {
     String? url = await viewModel.checkUpdate();
     if (url != null && url.isNotEmpty == true) {
-      // showNeedUpdateDialog(
-      //   context: context,
-      //   dismissClick: () {
-      //     // 是否显示红点
-      //     viewModel.shouldShowUpdateDot();
-      //   },
-      //   confirmClick: () {
-      //     // 跳转到外部浏览器打开
-      //     viewModel.jumpToOutLink(url);
-      //   },
-      // );
-      viewModel.shouldShowUpdateDot();
+      showNeedUpdateDialog(
+        context: context,
+        dismissClick: () {
+          // 是否显示红点
+          viewModel.shouldShowUpdateDot();
+        },
+        confirmClick: () {
+          // 跳转到外部浏览器打开
+          viewModel.jumpToOutLink(url);
+        },
+      );
     } else {
       showToast('已经是最新版本');
     }
