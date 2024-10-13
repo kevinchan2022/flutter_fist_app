@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/common-ui/bottom_navigator_widget.dart';
+import 'package:flutter_project/pages/car_3d/car_3d_page.dart';
 import 'package:flutter_project/pages/home/home_page.dart';
 import 'package:flutter_project/pages/hotKey/hot_key_page.dart';
 import 'package:flutter_project/pages/knowledge/knowledge_page.dart';
@@ -32,7 +33,8 @@ class _LayoutPageState extends State<LayoutPage> {
     pages = [
       const HomePage(),
       const HotKeyPage(),
-      const KnowledgePage(),
+      // const KnowledgePage(),
+      const Car3dPage(),
       const MyPage()
     ];
     // pages = [
@@ -41,7 +43,8 @@ class _LayoutPageState extends State<LayoutPage> {
     //   (context) => const KnowledgePage(),
     //   (context) => const MyPage()
     // ];
-    labels = ["首页", "热点", "体系", "我的"];
+    // labels = ["首页", "热点", "体系", "我的"];
+    labels = ["首页", "热点", "Test", "我的"];
     icons = [
       Icon(
         Icons.home,

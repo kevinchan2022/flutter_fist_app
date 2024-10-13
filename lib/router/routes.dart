@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/common-ui/web/webview_widget.dart';
 import 'package:flutter_project/pages/about_us/about_us_page.dart';
 import 'package:flutter_project/pages/auth/register_page.dart';
+import 'package:flutter_project/pages/car_3d/car_3d_page.dart';
 import 'package:flutter_project/pages/collects/collects_page.dart';
 import 'package:flutter_project/pages/knowledge/detail/knowledge_detail_page.dart';
 import 'package:flutter_project/pages/layout/layout_page.dart';
@@ -24,9 +25,11 @@ class RoutePath {
   // 热点搜索页
   static const String hotKeySearchPage = '/hot_key_search';
   // 收藏页面
-  static const String collectsPage = 'collects_page';
+  static const String collectsPage = '/collects_page';
   // 关于页面
-  static const String aboutUsPage = 'about_us_page';
+  static const String aboutUsPage = '/about_us_page';
+  // 3d car页面
+  static const String car3dPage = '/car_3d_page';
 }
 
 // ignore: avoid_classes_with_only_static_members
@@ -54,6 +57,8 @@ class Routes {
         return pageRoute(const CollectsPage(), settings: settings);
       case RoutePath.aboutUsPage:
         return pageRoute(const AboutUsPage(), settings: settings);
+      case RoutePath.car3dPage:
+        return pageRoute(const Car3dPage(), settings: settings);
     }
     // 页面匹配失败
     return pageRoute(
